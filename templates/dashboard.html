@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance Dashboard</title>
+    <style>
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(to bottom, #175d69 23%, #330c43 95%);
+    min-height: 100vh;
+    color: #fff;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 15px;
+  }
+  
+  .navbar .logo a {
+    font-size: 1.8rem;
+    text-decoration: none;
+    color: #fff;
+  }
+  
+ 
+  
+  
+  .logout {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+    border-radius: 6px;
+    transition: 0.3s;
+  }
+  
+  .logout:hover {
+    background-color: #47b2e4;
+    color: #fff;
+  }
+  
+  
+  .container {
+    max-width: 1200px;
+    margin: 120px auto 0;
+    padding: 20px;
+  }
+  
+  .dashboard-card {
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(15px); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    padding: 20px;
+  }
+  
+  .dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .dashboard-table th,
+  .dashboard-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  .dashboard-table th {
+    background-color: #47b2e4;
+    color: white;
+  }
+  
+  .dashboard-table td {
+    background-color: #333;
+  }
+
+  .green {
+            background-color: #d4edda; 
+        }
+        .yellow {
+            background-color: #fff3cd; 
+        }
+        .red {
+            background-color: #f8d7da; 
+        }
+ 
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <h2 class="logo"><a href="#">Attendance Dashboard</a></h2>
+        <div class="buttons">
+         
+          <a href="{{ url_for('logout') }}" class="logout" id="logout-btn">LOG OUT</a>
+        </div>
+      </nav>
+    </header>
+
+    <section>
+      <div class="container">
+        <h2>Employee Dashboard</h2>
+        <div class="dashboard-card">
+          <table class="dashboard-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Position</th>
+                <th>Attendance Days</th>
+                <th>Absent Days</th>
+                <th>Late</th>
+                <th>Overtime</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for metric in metrics %}
+            <tr class="{{ metric['Color Class'] }}">
+                <td>{{ metric['ID'] }}</td>
+                <td>{{ metric['Name'] }}</td>
+                <td>{{ metric['Department'] }}</td>
+                <td>{{ metric['Position'] }}</td>
+                <td>{{ metric['Days Attended'] }}</td>
+                <td>{{ metric['Days Absent'] }}</td>
+                <td>{{ metric['Late Hours'] }}</td>
+                <td>{{ metric['Overtime Hours'] }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <script>
+
+
+
+
+
+
+
+
+      
+    </script>
+  </body>
+</html>
